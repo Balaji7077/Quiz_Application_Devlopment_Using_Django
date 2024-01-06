@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+</head>
+<style>
+    h1
+    {
+        color: aqua;
+    }
+    body
+    {
+        background-color: black;
+    }
+    label
+    {
+        color: white;
+    }
+    form
+    {
+        color:goldenrod;
+    }
+    input
+    {
+        color: rgb(170, 3, 3);
+    }
+    h6
+    {
+        color: rgb(235, 235, 235);
+    }
+</style>
+<body>
+    <center><h1>Python Quiz </h1></center>
+    <form method="POST" action="">
+        {% csrf_token %}
+        {% for question in questions %}
+            <hr>
+                <legend>{{ question.question_text }}</legend>
+                {% for choice in question.choice_set.all %}
+                    <label>
+                        <input type="radio" name="question_{{ question.id }}" value="{{ choice.id }}">
+                        {{ choice.choice_text }}
+                    </label><br>
+                {% endfor %}
+            
+        {% endfor %}
+        <input type="submit" value="Submit" >
+        
+    </form>
+    <center><h6>Devloped by @Balajisabat</h6></center>
+</body>
+</html>
